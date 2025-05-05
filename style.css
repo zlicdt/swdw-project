@@ -1,0 +1,91 @@
+#th_style_1 {
+    background-color: orange;
+    border: solid black 1px;
+    text-align: left;
+}
+#th_style_2 {
+    background-color: blue;
+    color: yellow;
+    border: solid black 1px;
+    text-align: left;
+}
+#th_style_3 {
+    border: solid black 1px;
+    text-align: left;
+}
+#th_style_3i {
+    border: solid black 1px;
+    text-align: center;
+}
+#divs {
+    width: 896px;
+}
+#tbs {
+    border: 1px solid black;
+    border-spacing: 2px;
+    width: 100%;
+}
+a:hover {
+    color: red;
+    font-size: 110%;
+}
+#box_1 {
+    height:128px;
+    width: 128px;
+    border: 1px black solid;
+    background-color: green;
+    color: white;
+    position: absolute;
+    align-content: center;
+    text-align: center;
+    top: 48px;
+    left: 96px;
+    z-index: 3;
+}
+#box_2 {
+    height: 128px;
+    width: 128px;
+    border: 1px black solid;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    align-content: center;
+    top: 128px;
+    left: 166px;
+    position: absolute;
+    z-index: 2;
+}
+#box_3 {
+    height:128px;
+    width: 128px;
+    border: 1px black solid;
+    background-color: green;
+    color: white;
+    position: absolute;
+    align-content: center;
+    text-align: center;
+    top: 212px;
+    left: 242px;
+    z-index: 1;
+}
+#box_4 {
+    height:128px;
+    width: 128px;
+    border: 1px black solid;
+    background-color: gray;
+    color: yellow;
+    position: absolute;
+    align-content: center;
+    text-align: center;
+    top: 192px;
+    left: 96px;
+    z-index: 3;
+}
+#boxes_bg {
+    background-color: gray;
+    position: relative;
+    top: 5px;
+    left: 5px;
+    width: 512px;
+    height: 512px;
+}
