@@ -3,6 +3,7 @@
     <title>Our Hometowns</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./style.css">
+    <script src="./js/displayScripts.js"></script>
 </head>
 <body>
     <div id="divs">
@@ -22,25 +23,14 @@
                             <label for="hometown">Hometown:</label>
                             <br>
                             <select id="hometown" name="hometown" onchange="updateTextSelectedCity()" required>
-                                <option value="H1" >Jilin City</option>
-                                <option value="H2" >Hometown 2</option>
-                                <option value="H3" >Hometown 3</option>
-                                <option value="H4" >Hometown 4</option>
+                                <option value="H1" >Guangzhou City</option>
+                                <option value="H2" >Jilin City</option>
+                                <option value="H3" >Jiujiang City</option>
+                                <option value="H4" >Quanzhou City</option>
                             </select>
                             <br><br>
                             <span>Your city selected is: </span>
                             <input type="text" id="selectedCity" readonly>
-                            <script>
-                                var selectElement = document.getElementById("hometown");
-                                var selectedValue = selectElement.options[selectElement.selectedIndex].text;
-                                document.getElementById("selectedCity").value = selectedValue;
-                                
-                                function updateTextSelectedCity() {
-                                    var selectElement = document.getElementById("hometown");
-                                    var selectedValue = selectElement.options[selectElement.selectedIndex].text;
-                                    document.getElementById("selectedCity").value = selectedValue;
-                                }
-                            </script>
                             <br><br>
                             <button type="submit">Make Reservation</button>
                         </form>
@@ -49,16 +39,28 @@
             </tr>
             <tr>
                 <th id="th_style_3">
-                    <div>
-                        <!-- TODO: needs a loop by JavaScript to display the title and ul -->
-                    </div>
+                    <div id="attrsArea"></div>
                 </th>
                 <th id="th_style_3">
-                    <div>
-                        <!-- TODO: needs JavaScript to display title and image -->
-                    </div>
+                    <div id="imgArea"></div>
                 </th>
             </tr>
         </table>
     </div>
+    <script>
+        // Update page once when loaded
+        var selectElement = document.getElementById("hometown");
+        var selectedTag = selectElement.value;
+        displayAttrAndImg(selectedTag);
+        var selectedValue = selectElement.options[selectElement.selectedIndex].text;
+        document.getElementById("selectedCity").value = selectedValue;
+        // Update page when the select element changes
+        function updateTextSelectedCity() {
+            var selectElement = document.getElementById("hometown");
+            var selectedTag = selectElement.value;
+            displayAttrAndImg(selectedTag);
+            var selectedValue = selectElement.options[selectElement.selectedIndex].text;
+            document.getElementById("selectedCity").value = selectedValue;
+        }
+    </script>
 </body>
