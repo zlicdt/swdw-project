@@ -6,7 +6,10 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 if (empty($username) || empty($password)) {
-    echo "Username and password cannot be empty.";
+    echo "<script>
+        alert('Username and password cannot be empty.');
+        window.location.href = '../loginRegForm.html';
+    </script>";
     exit;
 }
 $sql = "SELECT * FROM touristMem WHERE username='$username' AND password='$password'";
