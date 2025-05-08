@@ -1,4 +1,5 @@
 <?php
+// require 'connect_db.php';
 require 'connect_db_local.php';
 
 $username = $_POST['username'];
