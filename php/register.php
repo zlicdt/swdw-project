@@ -32,8 +32,9 @@ if (mysqli_num_rows($result_checkifexists) > 0) {
     </script>";
     exit;
 }
-/* TODO: The fourth column should store the real_name of the user
-The first column is mid
+/* 
+    The fourth column should store the real_name of the user
+    The first column is mid
 */
 $sql = "INSERT INTO touristMem VALUES (NULL, '$username', '$pwd1', '$real_name', NULL)";
 if (mysqli_query($conn, $sql)) {
