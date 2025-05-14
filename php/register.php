@@ -5,7 +5,7 @@ require 'connect_db_local.php';
 $username = $_POST['username'];
 $pwd1 = $_POST['password'];
 $pwd2 = $_POST['confirm_password'];
-$real_name = $_POST['real_name'];
+$real_name = $_POST['realname'];
 
 if (empty($username) || empty($pwd1) || empty($pwd2)) {
     echo "<script>
