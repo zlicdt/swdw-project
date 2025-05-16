@@ -65,15 +65,16 @@
                         <label for="search">Search Panel Entry: </label>
                         <button id="btn" type="submit">Search Panel</button>
                     </form>
+                    <br>
                     <form action="./php/submit_comments.php" method="post">
                         <label for="comment">Comment area: </label>
-                        <br><br>
+                        <br>
                         <textarea name="comment" placeholder="Your comments" style="resize: none;" required></textarea>
                         <input type="number" name="rating" min="1" max="5" placeholder="Rating(1-5)" style="width: 50%;" required>
                         <br>
                         <button type="submit">Add comment</button>
                     </form>
-                    <h3>Recent Comments</h3>
+                    <span style="font-weight: bold">Recent Comments</span>
                     <div style="margin-top: 20px; border: 1px solid gray; padding: 10px;">
                             <?php
                             session_start();
