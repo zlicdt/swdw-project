@@ -18,21 +18,24 @@
                     <div style="text-align: center; vertical-align: middle;">
                         <br>
                         <span style="font-weight: bold;">Hometown Form:</span>
-                        <br><br>
+                        <br><br>                            
                         <form action="./php/reservation.php" method="post">
                             <label for="hometown">Hometown:</label>
                             <br>
-                            <select id="hometown" name="hometown" onchange="updateTextSelectedCity()" required>
-                                <option value="H1" >Guangzhou City</option>
-                                <option value="H2" >Jilin City</option>
-                                <option value="H3" >Jiujiang City</option>
-                                <option value="H4" >Quanzhou City</option>
+                            <select id="hometown" name="hometown" onchange="updateTextSelectedCity(); viewSelectedCity();" required>
+                                <option value="H1" <?php echo (isset($_GET['city']) && $_GET['city'] == 'Guangzhou City') ? 'selected' : ''; ?>>Guangzhou City</option>
+                                <option value="H2" <?php echo (isset($_GET['city']) && $_GET['city'] == 'Jilin City') ? 'selected' : ''; ?>>Jilin City</option>
+                                <option value="H3" <?php echo (isset($_GET['city']) && $_GET['city'] == 'Jiujiang City') ? 'selected' : ''; ?>>Jiujiang City</option>
+                                <option value="H4" <?php echo (isset($_GET['city']) && $_GET['city'] == 'Quanzhou City') ? 'selected' : ''; ?>>Quanzhou City</option>
                             </select>
                             <br><br>
                             <span>Your city selected is: </span>
-                            <input type="text" id="selectedCity" readonly>
+                            <input type="text" id="selectedCity" value="<?php echo isset($_GET['city']) ? $_GET['city'] : 'Guangzhou City'; ?>" readonly>
                             <br><br>
                             <button type="submit">Make Reservation</button>
+                        </form>
+                        <form id="viewCityForm" action="./hometowns.php" method="get">
+                            <input type="hidden" id="cityParam" name="city" value="">
                         </form>
                     </div>
                 </th>
@@ -43,21 +46,42 @@
                 </th>
                 <th id="th_style_3">
                     <div id="imgArea"></div>
-                </th>
+                </th>                
                 <script>
-        // Update page once when loaded
-        var selectElement = document.getElementById("hometown");
-        var selectedTag = selectElement.value;
+        // Get current city and display
+        var selectedCity = <?php echo isset($_GET['city']) ? '"'.$_GET['city'].'"' : '"Guangzhou City"'; ?>;
+        var cityToTagMap = {
+            "Guangzhou City": "H1",
+            "Jilin City": "H2",
+            "Jiujiang City": "H3",
+            "Quanzhou City": "H4"
+        };
+        var selectedTag = cityToTagMap[selectedCity];
         displayAttrAndImg(selectedTag);
-        var selectedValue = selectElement.options[selectElement.selectedIndex].text;
-        document.getElementById("selectedCity").value = selectedValue;
-        // Update page when the select element changes
+        
+        // initialize
+        var selectElement = document.getElementById("hometown");
+        for (var i = 0; i < selectElement.options.length; i++) {
+            if (selectElement.options[i].text === selectedCity) {
+                selectElement.selectedIndex = i;
+                break;
+            }
+        }
+        
+        // Update the text of the selected city
         function updateTextSelectedCity() {
             var selectElement = document.getElementById("hometown");
-            var selectedTag = selectElement.value;
-            displayAttrAndImg(selectedTag);
-            var selectedValue = selectElement.options[selectElement.selectedIndex].text;
-            document.getElementById("selectedCity").value = selectedValue;
+            var selectedText = selectElement.options[selectElement.selectedIndex].text;
+            document.getElementById("selectedCity").value = selectedText;
+            displayAttrAndImg(selectElement.value);
+        }
+        
+        // Initial update the selected city
+        function viewSelectedCity() {
+            var selectElement = document.getElementById("hometown");
+            var selectedText = selectElement.options[selectElement.selectedIndex].text;
+            document.getElementById("cityParam").value = selectedText;
+            document.getElementById("viewCityForm").submit();
         }
     </script>
                 <th id="th_style_3i">
@@ -71,17 +95,18 @@
                         <br>
                         <textarea name="comment" placeholder="Your comments" style="resize: none;" required></textarea>
                         <input type="number" name="rating" min="1" max="5" placeholder="Rating(1-5)" style="width: 50%;" required>
+                        <input type="hidden" name="city" value="<?php echo isset($_GET['city']) ? $_GET['city'] : 'Guangzhou City'; ?>">
                         <br>
                         <button type="submit">Add comment</button>
                     </form>
                     <span style="font-weight: bold">Recent Comments</span>
-                    <div style="margin-top: 20px; border: 1px solid gray; padding: 10px;">
-                            <?php
+                    <div style="margin-top: 20px; border: 1px solid gray; padding: 10px;">                            
+                        <?php
                             session_start();
                             require './php/connect_db_local.php';
                             // require 'connect_db.php';
 
-                            $city = $_GET['city'];
+                            $city = isset($_GET['city']) ? $_GET['city'] : 'Guangzhou City';
                             $result = mysqli_query($conn, "SELECT * FROM comments WHERE city='$city'");
                             echo "<ul>";
                             while ($row = mysqli_fetch_assoc($result)) {
