@@ -44,7 +44,7 @@ if (mysqli_query($conn, $sql)) {
     </script>";
 } else {
     echo "<script>
-        alert('Error: " . mysqli_error($conn) . "');
+        alert('Failed to register.');
         window.location.href = '../loginRegForm.html';
     </script>";
 }

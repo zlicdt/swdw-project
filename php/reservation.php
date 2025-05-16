@@ -40,14 +40,14 @@ $result = mysqli_query($conn, $sql);
 if ($result) {
     echo "<script>
         alert('Reservation city already updated to $city');
-        window.location.href = '../hometowns.html';
+        window.location.href = '../hometowns.php';
     </script>";
 } else {
     echo "<script>
-        alert('Reservation failed " . mysqli_error($conn) . "');
-        window.location.href = '../hometowns.html';
+        alert('Reservation failed.');
+        window.location.href = '../hometowns.php';
     </script>";
 }
 
-mysqli_close($conn);
+$conn->close();
 ?>

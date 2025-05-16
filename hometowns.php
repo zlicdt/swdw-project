@@ -9,7 +9,7 @@
     <div id="divs">
         <table id="tbs">
             <tr>
-                <th id="th_style_1" style="width: 256px;"><a href="./hometowns.html">Our Hometowns</a></th>
+                <th id="th_style_1" style="width: 256px;"><a href="./hometowns.php">Our Hometowns</a></th>
                 <th id="th_style_1" style="width: 384px;"><a href="./loginRegForm.html">Login / Register</a></th>
                 <th id="th_style_1" style="width: 128px;"><a href="./AboutUs.html">About Us</a></th>
             </tr>
@@ -44,15 +44,7 @@
                 <th id="th_style_3">
                     <div id="imgArea"></div>
                 </th>
-                <th id="th_style_3i">
-                    <form action="./php/search.php" method="get">
-                        <button id="btn" type="submit">Search Panel</button>
-                    </form>
-                </th>
-            </tr>
-        </table>
-    </div>
-    <script>
+                <script>
         // Update page once when loaded
         var selectElement = document.getElementById("hometown");
         var selectedTag = selectElement.value;
@@ -68,4 +60,44 @@
             document.getElementById("selectedCity").value = selectedValue;
         }
     </script>
+                <th id="th_style_3i">
+                    <form action="./php/search.php" method="get">
+                        <label for="search">Search Panel Entry: </label>
+                        <button id="btn" type="submit">Search Panel</button>
+                    </form>
+                    <form action="./php/submit_comments.php" method="post">
+                        <input type="text" id="selectedCity" readonly>
+                        <label for="comment">Comment area: </label>
+                        <br><br>
+                        <textarea name="comment" placeholder="Your comments" style="resize: none;" required></textarea>
+                        <input type="number" name="rating" min="1" max="5" placeholder="Rating(1-5)" style="width: 50%;" required>
+                        <br>
+                        <button type="submit">Add comment</button>
+                    </form>
+                    <h3>Recent Comments</h3>
+                    <div style="margin-top: 20px; border: 1px solid gray; padding: 10px;">
+                            <?php
+                            session_start();
+                            require './php/connect_db_local.php';
+                            // require 'connect_db.php';
+
+                            $city = $_GET['city'];
+                            $result = mysqli_query($conn, "SELECT * FROM comments WHERE city='$city'");
+                            echo "<ul>";
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $username_by_id = mysqli_query($conn, "SELECT * FROM touristMem WHERE mid = '$row[user_id]'");
+                                $wor = mysqli_fetch_assoc($username_by_id);
+                                echo "<li>";
+                                echo "From <a href='./hometowns.php' onclick='alert(\"Content: " . $row['comment_text'] . " \\n Rating: ".$row['rating']."\"); return false;'>" . $wor['username'] . "</a>";
+                                echo "</li>";
+                            }
+                            echo "</ul>";
+                            $conn->close();
+                            ?>
+                    </div>
+                </th>
+            </tr>
+        </table>
+    </div>
+    
 </body>

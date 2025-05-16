@@ -19,17 +19,17 @@ if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $_SESSION['username'] = $username;
     $_SESSION['password'] = $password;
-
+    $_SESSION['mid'] = $row['mid'];
     echo "<script>
         alert('Login successful!');
-        window.location.href = '../hometowns.html';
+        window.location.href = '../hometowns.php';
     </script>";
-    // header("Location: ../hometowns.html");
+    // header("Location: ../hometowns.php");
     // This can not be used because it suddenly jumps back and the alert message can not be shown
     exit;
 } else {
     echo "<script>
-        alert('Invalid username or password. Please try again.');
+        alert('Invalid username or password.');
         window.location.href = '../loginRegForm.html';
     </script>";
 }
