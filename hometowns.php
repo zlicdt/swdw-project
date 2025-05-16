@@ -66,7 +66,6 @@
                         <button id="btn" type="submit">Search Panel</button>
                     </form>
                     <form action="./php/submit_comments.php" method="post">
-                        <input type="text" id="selectedCity" readonly>
                         <label for="comment">Comment area: </label>
                         <br><br>
                         <textarea name="comment" placeholder="Your comments" style="resize: none;" required></textarea>
