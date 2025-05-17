@@ -113,7 +113,7 @@
                                 $username_by_id = mysqli_query($conn, "SELECT * FROM touristMem WHERE mid = '$row[user_id]'");
                                 $wor = mysqli_fetch_assoc($username_by_id);
                                 echo "<li>";
-                                echo "From <a href='./hometowns.php' onclick='alert(\"Content: " . $row['comment_text'] . " \\n Rating: ".$row['rating']."\"); return false;'>" . $wor['username'] . "</a>";
+                                echo "From <a href='./hometowns.php' onclick='alert(\"Content: " . htmlspecialchars($row['comment_text']) . " \\n Rating: ".$row['rating']."\"); return false;'>" . $wor['username'] . "</a>";
                                 echo "</li>";
                             }
                             echo "</ul>";
