@@ -11,7 +11,6 @@ if (!isset($_SESSION['username'])) {
 }
 
 $comment = mysqli_real_escape_string($conn, $_POST['comment']);
-echo "<script>alert('Comment: $comment');</script>";
 $rating = $_POST['rating'];
 $city = $_POST['city'];
 $user_id = $_SESSION['mid'];
