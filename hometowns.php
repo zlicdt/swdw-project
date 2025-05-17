@@ -104,7 +104,7 @@
                         <?php
                             session_start();
                             require './php/connect_db_local.php';
-                            // require 'connect_db.php';
+                            // require './php/connect_db.php';
 
                             $city = isset($_GET['city']) ? $_GET['city'] : 'Guangzhou City';
                             $result = mysqli_query($conn, "SELECT * FROM comments WHERE city='$city'");
