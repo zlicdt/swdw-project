@@ -1,4 +1,10 @@
 # Systems and Web Development Workshop Project
+## For TAs
+This is a private repository on Github to make team members work together easily.
+
+This repo will become open after the deadline of submission.
+
+The `php/connect_db.php` is not modified, but the version loaded to bcrab was changed to my pair's account.
 
 ## Run
 ```bash
